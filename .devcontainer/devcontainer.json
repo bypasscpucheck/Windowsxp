@@ -1,5 +1,32 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {}
+    "name": "MultiLang Dev Container",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/rust:1": {},
+        "ghcr.io/devcontainers/features/dotnet:2": {
+            "version": "8.0",
+            "dotnetRuntimeVersions": "6.0"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-vscode.cmake-tools",
+                "rust-lang.rust-analyzer",
+                "ms-dotnettools.csharp",
+                "twxs.cmake",
+                "jbenden.c-cpp-flylint",
+                "marlon407.code-groovy"
+            ],
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash"
+            }
+        }
+    },
+    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y nasm gcc g++ gdb make cmake && cargo --version && dotnet --info",
+    "forwardPorts": [],
+    "remoteUser": "vscode"
 }
- 
+
